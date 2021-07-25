@@ -70,12 +70,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$arch_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$arch_version"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     //Anko
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
-
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -83,4 +81,13 @@ dependencies {
 
     //shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation'com.ramotion.cardslider:card-slider:0.3.1'
+
+    //view pager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    //rounded imageview
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SaveoAssignment</string>
-</resources>
+    <string name="movies">Movies</string>
+    <string name="now_showing">Now Showing</string>
+    </resources>

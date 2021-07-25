@@ -9,11 +9,6 @@ Model class obtained from the network call.
 
  */
 
-data class MoviesResponse(
-
-    @field:SerializedName("MoviesResponse")
-    val moviesResponse: MutableList<MoviesResponseItem?>? = null
-)
 
 data class Previousepisode(
 
