@@ -12,7 +12,7 @@ interface ApiService {
     until the response is fetched.
     */
     @GET("/shows")
-    suspend fun getDetails(@Query("page") key: Int): MutableList<MoviesResponseItem?>?
+    suspend fun getDetails(@Query("page") key: Int): MutableList<MoviesResponseItem>
 
 
 }

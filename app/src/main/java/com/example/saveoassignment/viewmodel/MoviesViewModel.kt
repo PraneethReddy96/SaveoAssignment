@@ -14,14 +14,14 @@ class MoviesViewModel(val repository : Repository) : ViewModel() {
      This function takes in the response from the repository class and converts it into live data
       and emits it back to the subscriber
       */
-    fun getMoviesList(key: Int): LiveData<MutableList<MoviesResponseItem?>?>{
+    fun getMoviesList(key: Int): LiveData<MutableList<MoviesResponseItem>>{
 
 
         return liveData(Dispatchers.IO) {
 
             val response = repository.getMoviesItemList(key)
 
-            emit(response.data)
+            emit(response.data!!)
 
         }
 

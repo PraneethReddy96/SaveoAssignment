@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +22,12 @@ import kotlinx.android.synthetic.main.activity_movies_home_page.*
 
 class MoviesHomePageActivity : AppCompatActivity() {
 
-    var moviesList: MutableList<MoviesResponseItem?>? = mutableListOf()
-    lateinit var viewPager: ViewPager2
-    lateinit var viewModel: MoviesViewModel
-    var moviesAdapter = MoviesItemAdapter(moviesList)
-
+    private var moviesList: MutableList<MoviesResponseItem?>? = mutableListOf()
+    private lateinit var viewPager: ViewPager2
+    private lateinit var viewModel: MoviesViewModel
+    private var moviesAdapter = MoviesItemAdapter(moviesList)
+    private var currentPage : Int = 1
+    private var totalAvailablePages : Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,22 +39,38 @@ class MoviesHomePageActivity : AppCompatActivity() {
     }
 
     private fun buildData() {
-        viewModel.getMoviesList(1).observe(this, Observer {
+        viewModel.getMoviesList(currentPage).observe(this, Observer {
 
             moviesList!!.clear()
             moviesList!!.addAll(it!!)
             viewPager.adapter?.notifyDataSetChanged()
-            rvHomeScreenMovies.adapter?.notifyDataSetChanged()
+           rvHomeScreenMovies.adapter?.notifyDataSetChanged()
 
 
         })
     }
 
     private fun setMoviesRecyclerAdapter() {
-        val ltManager = GridLayoutManager(this, 3)
-        rvHomeScreenMovies.adapter = moviesAdapter
-        rvHomeScreenMovies.layoutManager= ltManager
 
+        rvHomeScreenMovies.apply {
+
+            val ltManager = GridLayoutManager(this@MoviesHomePageActivity, 3)
+            adapter = moviesAdapter
+            layoutManager = ltManager
+
+        }
+
+        fun RecyclerView.onScrollToEnd(
+            onScrollNearEnd: (Unit) -> Unit
+        ) = addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (!rvHomeScreenMovies.canScrollVertically(1)) {
+                    onScrollNearEnd(Unit)
+                    currentPage+=1
+                    buildData()
+                }
+            }
+        })
     }
 
     private fun initViewsAndSetViewPager() {
@@ -60,11 +78,11 @@ class MoviesHomePageActivity : AppCompatActivity() {
         val viewModelFactory = MoviesViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MoviesViewModel::class.java)
 
-// setting view pager //
+        // setting view pager to its recyclerview adapter //
         viewPager = findViewById<ViewPager2>(R.id.vpHomeScreenMoviesSlider)
         viewPager.adapter = SliderItemAdapter(moviesList, viewPager)
 
-        viewPager.clipToPadding =false
+        viewPager.clipToPadding = false
         viewPager.clipChildren = false
         viewPager.offscreenPageLimit = 3
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
