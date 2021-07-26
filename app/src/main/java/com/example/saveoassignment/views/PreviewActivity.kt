@@ -29,7 +29,7 @@ class PreviewActivity : AppCompatActivity() {
        var  date=intent.getStringExtra("date")
        var type=intent.getStringExtra("type")
 
-        Glide.with(ivPreviewImage).load(image).placeholder(R.drawable.ic_loupe__2_).into(ivPreviewImage)
+        Glide.with(ivPreviewImage).load(image).placeholder(R.color.grey).into(ivPreviewImage)
         tvPreviewScreenTitle.setText(title.toString())
         tvPreviewRating.setText(type.toString())
         tvPreviewTime.setText(time.toString())

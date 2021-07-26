@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="seaWeed">#194d6a</color>
+    <color name="grey">#dddddd</color>
 </resources>

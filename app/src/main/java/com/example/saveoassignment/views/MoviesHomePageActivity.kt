@@ -22,14 +22,14 @@ import com.example.saveoassignment.viewmodel.MoviesViewModel
 import com.example.saveoassignment.viewmodel.MoviesViewModelFactory
 import kotlinx.android.synthetic.main.activity_movies_home_page.*
 
-class MoviesHomePageActivity : AppCompatActivity(),ItemClickListener {
+class MoviesHomePageActivity : AppCompatActivity(), ItemClickListener {
 
     private var moviesList: MutableList<MoviesResponseItem?>? = mutableListOf()
     private lateinit var viewPager: ViewPager2
     private lateinit var viewModel: MoviesViewModel
-    private var moviesAdapter = MoviesItemAdapter(moviesList,this)
-    private var currentPage : Int = 1
-    private var totalAvailablePages : Int = 1
+    private var moviesAdapter = MoviesItemAdapter(moviesList, this)
+    private var currentPage: Int = 1
+    private var totalAvailablePages: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,17 +40,27 @@ class MoviesHomePageActivity : AppCompatActivity(),ItemClickListener {
 
     }
 
+    /*
+
+    The data is being fetched by subscribing the view model in this function, it returns a mutable
+    list of movies response.
+     */
     private fun buildData() {
         viewModel.getMoviesList(currentPage).observe(this, Observer {
 
             moviesList!!.clear()
             moviesList!!.addAll(it!!)
             viewPager.adapter?.notifyDataSetChanged()
-           rvHomeScreenMovies.adapter?.notifyDataSetChanged()
+            rvHomeScreenMovies.adapter?.notifyDataSetChanged()
 
 
         })
     }
+
+    /*
+
+    function is used to set up the movies recycler adapter.
+     */
 
     private fun setMoviesRecyclerAdapter() {
 
@@ -62,19 +72,31 @@ class MoviesHomePageActivity : AppCompatActivity(),ItemClickListener {
 
         }
 
+        /*
+
+        Function checks the end of the page and helps to populate the next page with the help of
+         queries,thus making the list unlimited, until data runs out.
+
+         */
         fun RecyclerView.onScrollToEnd(
-            onScrollNearEnd: (Unit) -> Unit
+            onScrollNearEnd: (Unit) -> Unit,
         ) = addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (!rvHomeScreenMovies.canScrollVertically(1)) {
                     onScrollNearEnd(Unit)
-                    currentPage+=1
+                    currentPage += 1
                     buildData()
                 }
             }
         })
     }
 
+
+    /*
+
+    Function sets up the viewPager along with initializing the view Model to fetch data
+    and display the movies in the viewpager.
+     */
     private fun initViewsAndSetViewPager() {
         val repository = Repository()
         val viewModelFactory = MoviesViewModelFactory(repository)
@@ -82,7 +104,7 @@ class MoviesHomePageActivity : AppCompatActivity(),ItemClickListener {
 
         // setting view pager to its recyclerview adapter //
         viewPager = findViewById<ViewPager2>(R.id.vpHomeScreenMoviesSlider)
-        viewPager.adapter = SliderItemAdapter(moviesList, viewPager,this)
+        viewPager.adapter = SliderItemAdapter(moviesList, viewPager, this)
 
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
@@ -100,16 +122,21 @@ class MoviesHomePageActivity : AppCompatActivity(),ItemClickListener {
         viewPager.setPageTransformer(compositePageTransformer)
     }
 
+
+    /*
+
+    Fetches and passes the values to the preview activity for the movie preview.
+     */
     override fun onItemClicked(moviesItem: MoviesResponseItem) {
 
 
-        val intent = Intent(this,PreviewActivity::class.java)
-        intent.putExtra("image",moviesItem.image?.original.toString())
-        intent.putExtra("title",moviesItem.name.toString())
-        intent.putExtra("summary",moviesItem.summary.toString())
-        intent.putExtra("time",moviesItem.averageRuntime.toString())
-        intent.putExtra("date",moviesItem.premiered.toString())
-        intent.putExtra("type",moviesItem.type.toString())
+        val intent = Intent(this, PreviewActivity::class.java)
+        intent.putExtra("image", moviesItem.image?.original.toString())
+        intent.putExtra("title", moviesItem.name.toString())
+        intent.putExtra("summary", moviesItem.summary.toString())
+        intent.putExtra("time", moviesItem.averageRuntime.toString())
+        intent.putExtra("date", moviesItem.premiered.toString())
+        intent.putExtra("type", moviesItem.type.toString())
         startActivity(intent)
 
     }

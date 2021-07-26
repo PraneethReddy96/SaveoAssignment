@@ -14,12 +14,25 @@ class SliderItemAdapter(
     val viewPager: ViewPager2,
     val itemClickListener: ItemClickListener,
 ) : RecyclerView.Adapter<SliderItemViewHolder>() {
+
+
+
+    /*
+    Inflates the layout and sends it to the view holders constructor.
+     */
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderItemViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.movies_slide_item_layout, parent, false)
         return SliderItemViewHolder(view,itemClickListener)
     }
 
+
+    /*
+
+Binds the movies data with the view holder
+
+ */
     override fun onBindViewHolder(holder: SliderItemViewHolder, position: Int) {
         var moviesResponseItem = viewPagerList?.get(position)
         if (moviesResponseItem != null) {
@@ -27,6 +40,11 @@ class SliderItemAdapter(
 
         }
     }
+
+    /*
+
+   checks the list of data and returns the size
+    */
 
     override fun getItemCount(): Int {
         return viewPagerList?.size!!

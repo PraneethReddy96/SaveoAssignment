@@ -14,10 +14,14 @@ class MoviesItemViewHolder(view: View,val itemClickListener: ItemClickListener) 
     var sliderImage = view.findViewById<ImageView>(R.id.ivMoviesImageView)
     var llContainer = view.findViewById<LinearLayout>(R.id.llMoviesContainer)
 
+   /*
+
+   Sets the data into the view and view groups on receiving from adapter
+    */
     fun setData(moviesResponseItem: MoviesResponseItem?) {
 
         Glide.with(sliderImage).load(moviesResponseItem?.image?.original)
-            .placeholder(R.drawable.ic_loupe__2_).into(sliderImage)
+            .placeholder(R.color.grey).into(sliderImage)
 
         llContainer.setOnClickListener(View.OnClickListener {
 
