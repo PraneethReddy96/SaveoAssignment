@@ -9,7 +9,8 @@ import com.example.saveoassignment.R
 import com.example.saveoassignment.data.model.MoviesResponseItem
 import com.example.saveoassignment.utils.ItemClickListener
 
-class SliderItemViewHolder(view: View,val itemClickListener: ItemClickListener) : RecyclerView.ViewHolder(view) {
+class SliderItemViewHolder(view: View, val itemClickListener: ItemClickListener) :
+    RecyclerView.ViewHolder(view) {
 
     var sliderImage = view.findViewById<ImageView>(R.id.sliderMoviesImage)
     var llContainer = view.findViewById<LinearLayout>(R.id.llSliderContainer)
