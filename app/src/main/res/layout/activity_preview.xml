@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.PreviewActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_400"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="snap|exitUntilCollapsed|scroll">
+
+
+            <RelativeLayout
+                android:id="@+id/rlHomeScreenHeader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="pin">
+
+                <ImageView
+                    android:id="@+id/ivPreviewScreenBackIcon"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="@dimen/dp_10"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+                <TextView
+                    android:id="@+id/tvPreviewScreenHeading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_toLeftOf="@id/ivPreviewScreenUploadIcon"
+                    android:layout_toRightOf="@id/ivPreviewScreenBackIcon"
+                    android:text="@string/movies"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_22"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/ivPreviewScreenUploadIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/dp_10"
+                    android:src="@drawable/ic__8740395541558965381" />
+
+
+                <ImageView
+                    android:id="@+id/ivPreviewImage"
+                    android:layout_width="@dimen/dp_125"
+                    android:layout_height="@dimen/dp_175"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_below="@id/ivPreviewScreenBackIcon"/>
+
+
+
+                <ImageView
+                    android:id="@+id/ivPreviewPlayImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_play_circle_outline_24"
+                    android:layout_marginTop="@dimen/dp_90"
+                    android:layout_marginLeft="@dimen/dp_60"
+                    android:layout_below="@id/ivPreviewScreenBackIcon"/>
+
+                <TextView
+                    android:id="@+id/tvPreviewScreenTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/sp_20"
+                    android:layout_toRightOf="@id/ivPreviewImage"
+                    android:layout_below="@id/ivPreviewScreenBackIcon"
+                    android:textColor="@color/white"
+                    android:text="hello"
+                    android:textSize="@dimen/sp_20"/>
+
+                <TextView
+                    android:id="@+id/tvPreviewRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginLeft="@dimen/sp_20"
+                    android:layout_toRightOf="@id/ivPreviewImage"
+                    android:layout_below="@id/tvPreviewScreenTitle"
+                    android:textColor="@color/white"
+                    android:text="R"
+                    android:textSize="@dimen/sp_15"/>
+
+                <TextView
+                    android:id="@+id/tvPreviewLine1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_toRightOf="@id/tvPreviewRating"
+                    android:layout_below="@id/tvPreviewScreenTitle"
+                    android:textColor="@color/white"
+                    android:text="|"
+                    android:textSize="@dimen/sp_20"/>
+
+                <TextView
+                    android:id="@+id/tvPreviewTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_toRightOf="@id/tvPreviewLine1"
+                    android:layout_below="@id/tvPreviewScreenTitle"
+                    android:textColor="@color/white"
+                    android:text="3:45 mins"
+                    android:textSize="@dimen/sp_15"/>
+
+                <TextView
+                    android:id="@+id/tvPreviewLine2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_toRightOf="@id/tvPreviewTime"
+                    android:layout_below="@id/tvPreviewScreenTitle"
+                    android:textColor="@color/white"
+                    android:text="|"
+                    android:textSize="@dimen/sp_20"/>
+
+                <TextView
+                    android:id="@+id/tvPreviewYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_toRightOf="@id/tvPreviewLine2"
+                    android:layout_below="@id/tvPreviewScreenTitle"
+                    android:textColor="@color/white"
+                    android:text="15 Dec 2015"
+                    android:textSize="@dimen/sp_15"/>
+
+                <TextView
+                    android:id="@+id/tvGenre1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_13"
+                    android:background="@drawable/rectangle"
+                    android:text="@string/DRAMA1"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_30"
+                   android:paddingLeft="@dimen/dp_7"
+                    android:paddingRight="@dimen/dp_7"
+                    android:paddingTop="@dimen/dp_2"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_below="@id/tvPreviewRating"
+                    android:layout_toRightOf="@id/ivPreviewImage"/>
+
+                <TextView
+                    android:id="@+id/tvGenre2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_13"
+                    android:background="@drawable/rectangle"
+                    android:text="@string/CRIME"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:paddingLeft="@dimen/dp_7"
+                    android:paddingRight="@dimen/dp_7"
+                    android:paddingTop="@dimen/dp_2"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:layout_below="@id/tvPreviewRating"
+                    android:layout_toRightOf="@id/tvGenre1"/>
+
+
+                <TextView
+                    android:id="@+id/tvGenre3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_13"
+                    android:background="@drawable/rectangle"
+                    android:text="@string/action"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:paddingLeft="@dimen/dp_7"
+                    android:paddingRight="@dimen/dp_7"
+                    android:paddingTop="@dimen/dp_2"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:layout_below="@id/tvPreviewRating"
+                    android:layout_toRightOf="@id/tvGenre2"/>
+
+                <RatingBar
+                    android:id="@+id/rvPreviewRatingBar"
+                    android:layout_below="@id/ivPreviewImage"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_5"
+                android:background="@color/seaWeed"
+                android:textAlignment="center"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.SaveoAssignment"
+                app:titleTextAppearance="@style/yourstyle" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_10"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/synopsis"
+            android:layout_marginTop="@dimen/dp_20"
+            android:padding="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_22" />
+
+
+        <TextView
+            android:id="@+id/tvPreviewSynposis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/synopsis"
+            android:layout_marginRight="@dimen/dp_10"
+            android:padding="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18" />
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+<androidx.cardview.widget.CardView
+    android:layout_width="@dimen/dp_125"
+    android:layout_height="@dimen/dp_40"
+    android:baselineAlignBottom="false"
+    app:layout_anchor="@id/appBar"
+    app:cardCornerRadius="@dimen/dp_20"
+    android:backgroundTint="@color/white"
+    app:layout_anchorGravity="bottom|right"
+    android:layout_marginRight="@dimen/dp_40">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/book_now"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/seaWeed"
+            android:textAlignment="center"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+

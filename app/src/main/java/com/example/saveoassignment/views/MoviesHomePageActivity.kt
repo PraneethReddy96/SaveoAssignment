@@ -1,5 +1,6 @@
 package com.example.saveoassignment.views
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -16,16 +17,17 @@ import com.example.saveoassignment.adapter.MoviesItemAdapter
 import com.example.saveoassignment.adapter.SliderItemAdapter
 import com.example.saveoassignment.data.model.MoviesResponseItem
 import com.example.saveoassignment.repository.Repository
+import com.example.saveoassignment.utils.ItemClickListener
 import com.example.saveoassignment.viewmodel.MoviesViewModel
 import com.example.saveoassignment.viewmodel.MoviesViewModelFactory
 import kotlinx.android.synthetic.main.activity_movies_home_page.*
 
-class MoviesHomePageActivity : AppCompatActivity() {
+class MoviesHomePageActivity : AppCompatActivity(),ItemClickListener {
 
     private var moviesList: MutableList<MoviesResponseItem?>? = mutableListOf()
     private lateinit var viewPager: ViewPager2
     private lateinit var viewModel: MoviesViewModel
-    private var moviesAdapter = MoviesItemAdapter(moviesList)
+    private var moviesAdapter = MoviesItemAdapter(moviesList,this)
     private var currentPage : Int = 1
     private var totalAvailablePages : Int = 1
 
@@ -80,7 +82,7 @@ class MoviesHomePageActivity : AppCompatActivity() {
 
         // setting view pager to its recyclerview adapter //
         viewPager = findViewById<ViewPager2>(R.id.vpHomeScreenMoviesSlider)
-        viewPager.adapter = SliderItemAdapter(moviesList, viewPager)
+        viewPager.adapter = SliderItemAdapter(moviesList, viewPager,this)
 
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
@@ -96,6 +98,20 @@ class MoviesHomePageActivity : AppCompatActivity() {
         })
 
         viewPager.setPageTransformer(compositePageTransformer)
+    }
+
+    override fun onItemClicked(moviesItem: MoviesResponseItem) {
+
+
+        val intent = Intent(this,PreviewActivity::class.java)
+        intent.putExtra("image",moviesItem.image?.original.toString())
+        intent.putExtra("title",moviesItem.name.toString())
+        intent.putExtra("summary",moviesItem.summary.toString())
+        intent.putExtra("time",moviesItem.averageRuntime.toString())
+        intent.putExtra("date",moviesItem.premiered.toString())
+        intent.putExtra("type",moviesItem.type.toString())
+        startActivity(intent)
+
     }
 
 

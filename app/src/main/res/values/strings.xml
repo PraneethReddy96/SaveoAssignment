@@ -2,4 +2,11 @@
     <string name="app_name">SaveoAssignment</string>
     <string name="movies">Movies</string>
     <string name="now_showing">Now Showing</string>
-    </resources>
+    <string name="synopsis">Synopsis</string>
+    <string name="drama">Drama</string>
+    <string name="DRAMA1">DRAMA</string>
+    <string name="CRIME">CRIME</string>
+    <string name="thriller">THRILLER</string>
+    <string name="book_now">BOOK NOW</string>
+    <string name="action">ACTION</string>
+</resources>
